@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#100b17">
+  <title>Velvet Afterhours — A Midnight Mixology Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game-shell">
+    <canvas id="scene" aria-label="A 3D midnight cocktail lounge"></canvas>
+    <div class="scene-vignette"></div>
+    <header class="topbar">
+      <a class="wordmark" href="#" aria-label="Velvet Afterhours home"><span class="mark">✳</span> VELVET <i>AFTERHOURS</i></a>
+      <div class="top-right"><span class="age-pill">18+ · FICTIONAL LOUNGE</span><button class="sound-toggle" id="soundToggle" aria-label="Toggle ambient sound">♫ <span>Sound off</span></button></div>
+    </header>
+
+    <section class="hud" id="hud" aria-live="polite">
+      <div class="stat"><span class="stat-label">TONIGHT'S TIPS</span><strong id="score">$000</strong></div>
+      <div class="shift-center"><span class="shift-name">THE LATE SHIFT</span><div class="time-track"><div id="timeBar"></div></div><span id="timer">01:15</span></div>
+      <div class="stat stat-right"><span class="stat-label">ROOM VIBE</span><strong id="vibe">✦ <span>GOOD</span></strong></div>
+    </section>
+
+    <div id="guest-labels" aria-hidden="true"></div>
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <section class="bottom-ui" id="bottomUi">
+      <div class="orders-head"><div><span class="eyebrow">AT THE BAR</span><h1>Make it a night to remember.</h1></div><div class="order-count"><span class="pulse-dot"></span><span id="activeCount">3 guests waiting</span></div></div>
+      <div class="orders" id="orders"></div>
+      <div class="mix-row"><div class="mix-label">THE COCKTAIL LIST <span>Pick the right pour</span></div><div class="recipes" id="recipes"></div></div>
+      <div class="mix-hint"><span class="keycap">1</span> <span class="keycap">2</span> <span class="keycap">3</span> to pour for the selected guest <span class="hint-divider">·</span> Click a guest to select <span class="hint-right">All guests are adults · all characters fully clothed</span></div>
+    </section>
+
+    <div class="modal-wrap" id="intro">
+      <div class="modal-card intro-card">
+        <div class="mini-mark">✳ &nbsp; EST. AFTER DARK</div>
+        <h2>Velvet<br><em>Afterhours</em></h2>
+        <p class="intro-copy">Three guests. One little bar. A whole lot of midnight chemistry.</p>
+        <p class="intro-sub">Mix the right cocktail, catch their eye, and make this shift unforgettable.</p>
+        <button class="primary-btn" id="startBtn">START YOUR SHIFT <span>↗</span></button>
+        <div class="disclaimer">A playful, adults-only nightlife fantasy.<br>Everyone is fictional, 21+, and fully dressed.</div>
+      </div>
+      <div class="modal-orbit orbit-one"></div><div class="modal-orbit orbit-two"></div>
+    </div>
+
+    <div class="modal-wrap hidden" id="result">
+      <div class="modal-card result-card">
+        <div class="mini-mark">✳ &nbsp; LAST CALL</div>
+        <h2 id="resultTitle">The night is yours.</h2>
+        <p class="result-score" id="resultScore">$000</p>
+        <p class="intro-sub" id="resultCopy">A shift worth staying up for.</p>
+        <div class="result-stats"><div><strong id="servedCount">0</strong><span>DRINKS SERVED</span></div><div><strong id="bestStreak">0</strong><span>BEST STREAK</span></div></div>
+        <button class="primary-btn" id="againBtn">PLAY ANOTHER SHIFT <span>↻</span></button>
+      </div>
+    </div>
+    <div class="mobile-note" id="mobileNote">Tap a guest, then tap their cocktail order to serve.</div>
+  </main>
+  <script type="module" src="game.js"></script>
+</body>
+</html>
