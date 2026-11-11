@@ -16,3 +16,23 @@
 - 👤 [Explore the creator's projects](https://go.ondev.store/mkpsodeteste-cloud).
 - 🌍 [Create with OMGithub](https://go.ondev.store/).
 <!-- omgithub:readme:end -->
+
+## Foxglove: Skybound
+
+A complete, cozy 3D platformer starring Foxglove, an adult fox adventurer. Jump across floating islands, collect 12 sun-gems, and reach the sky gate.
+
+### Play
+
+Open `index.html` in a modern browser, or serve this folder over HTTP (the Three.js module is loaded from a CDN):
+
+```sh
+python3 -m http.server 3002
+```
+
+Then visit [http://localhost:3002](http://localhost:3002).
+
+- **WASD** or **arrow keys** to move
+- **Space** to jump (press again in midair for a double jump)
+- **R** to restart
+- Touch controls appear on phones and tablets
+

@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"><meta name="theme-color" content="#101c34">
+<title>Foxglove: Skybound</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E🦊%3C/text%3E%3C/svg%3E">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+:root{--ink:#17243a;--cream:#fff8e9;--mint:#b6f3d9;--coral:#ff8069;--gold:#ffda7c}*{box-sizing:border-box}html,body{width:100%;height:100%;margin:0;overflow:hidden;background:#a5d9eb;color:var(--ink);font-family:'DM Sans',sans-serif}canvas{display:block;width:100%;height:100%;touch-action:none}#game{position:fixed;inset:0}.vignette{position:fixed;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,34,58,.28),transparent 25%,transparent 72%,rgba(18,34,58,.25))}#hud{position:fixed;inset:0;pointer-events:none;padding:22px 26px;display:flex;justify-content:space-between;align-items:flex-start;color:white;text-shadow:0 2px 12px #20354d66}.brand{font:800 21px 'Outfit',sans-serif;letter-spacing:.04em}.brand small{display:block;font:600 10px 'DM Sans';letter-spacing:.22em;text-transform:uppercase;opacity:.72;margin-top:3px}.hud-right{display:flex;gap:12px;align-items:center}.pill{border:1px solid #ffffff50;background:#ffffff25;backdrop-filter:blur(12px);padding:10px 15px;border-radius:20px;font-size:13px;font-weight:700;min-width:82px;text-align:center}.gem-icon{color:#8df3d3;font-size:16px;margin-right:5px}.progress-wrap{position:fixed;top:82px;left:50%;transform:translateX(-50%);width:min(270px,44vw);color:white;text-shadow:0 1px 5px #1a365566;font-size:10px;font-weight:800;letter-spacing:.18em;text-align:center}.progress-track{height:5px;background:#ffffff55;border-radius:8px;margin-top:8px;overflow:hidden}.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#a5f2d8,#fff0ae);border-radius:8px;transition:width .15s}.overlay{position:fixed;inset:0;display:grid;place-items:center;padding:22px;background:linear-gradient(110deg,rgba(14,29,53,.54),rgba(22,39,62,.17) 58%,rgba(22,39,62,.38));transition:opacity .35s,visibility .35s}.overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}.card{width:min(490px,94vw);padding:34px 38px 31px;border:1px solid #fff9;border-radius:28px;background:linear-gradient(145deg,#fff9edee,#fff4e1dc);box-shadow:0 25px 80px #17304c55;backdrop-filter:blur(16px);text-align:left;position:relative;overflow:hidden}.card:after{content:'✦';position:absolute;right:26px;top:15px;color:#edb65f;font-size:28px;opacity:.72}.eyebrow{font-size:10px;letter-spacing:.23em;font-weight:800;color:#d1725e;text-transform:uppercase}.card h1{font:800 clamp(38px,8vw,60px)/.98 'Outfit',sans-serif;letter-spacing:-.05em;margin:12px 0 11px;color:#21324a}.card h1 em{font-style:normal;color:#e77d62}.card p{color:#59677a;line-height:1.55;font-size:14px;margin:0 0 17px;max-width:380px}.controls{display:flex;gap:9px;flex-wrap:wrap;margin:20px 0 24px}.control{padding:9px 11px;background:#f0e7d8;border-radius:10px;color:#445267;font-size:11px;font-weight:700}.control b{color:#d1725e}.btn{cursor:pointer;border:0;border-radius:13px;padding:14px 19px;background:#e77d62;color:#fffdf6;font:800 13px 'DM Sans';letter-spacing:.08em;text-transform:uppercase;box-shadow:0 7px 0 #c86151,0 12px 18px #bf6d5255;transition:transform .12s,box-shadow .12s}.btn:hover{transform:translateY(-2px);box-shadow:0 9px 0 #c86151,0 15px 20px #bf6d5255}.btn:active{transform:translateY(4px);box-shadow:0 3px 0 #c86151}.helper{display:inline-block;margin-left:12px;color:#748092;font-size:11px}.toast{position:fixed;top:112px;left:50%;transform:translate(-50%,-10px);padding:11px 16px;border-radius:20px;background:#172b44db;color:#fff;font-size:12px;font-weight:700;opacity:0;transition:.3s;pointer-events:none}.toast.show{opacity:1;transform:translate(-50%,0)}#touch{position:fixed;inset:auto 0 20px;display:none;justify-content:space-between;padding:0 22px;pointer-events:none}.touchgroup{display:flex;gap:10px;align-items:end}.touchbtn{pointer-events:auto;width:54px;height:54px;border:1px solid #ffffff77;border-radius:18px;background:#ffffff37;color:white;font-size:22px;font-weight:800;backdrop-filter:blur(10px);touch-action:none;user-select:none}.touchbtn.jump{width:68px;height:68px;border-radius:50%;background:#e77d62aa;font-size:12px;letter-spacing:.08em}.tiny{font-size:10px;opacity:.8;margin-top:14px}
+@media(max-width:650px){#hud{padding:15px}.brand{font-size:17px}.pill{padding:8px 11px;min-width:65px;font-size:11px}.progress-wrap{top:68px}.card{padding:29px 25px}.card p{font-size:13px}.helper{display:block;margin:14px 0 0}.controls{gap:6px;margin:16px 0 20px}.control{font-size:10px;padding:8px}.vignette{background:linear-gradient(180deg,rgba(18,34,58,.2),transparent 20%,transparent 78%,rgba(18,34,58,.17))}}
+@media(pointer:coarse){#touch{display:flex}}
+</style>
+</head>
+<body><div id="game"></div><div class="vignette"></div>
+<div id="hud"><div class="brand">FOXGLOVE<small>Skybound · chapter one</small></div><div class="hud-right"><div class="pill"><span class="gem-icon">✦</span><span id="gem-count">0 / 12</span></div><div class="pill" id="life-count">♥ ♥ ♥</div></div></div>
+<div class="progress-wrap">THE WINDWARD ISLES<div class="progress-track"><div class="progress-fill" id="progress"></div></div></div>
+<div class="toast" id="toast">A little sparkle for the journey ✦</div>
+<div class="overlay" id="intro"><section class="card"><div class="eyebrow">A breezy little platform adventure</div><h1>Foxglove:<br><em>Skybound</em></h1><p>Leap across the Windward Isles, gather sun-gems, and follow the floating lanterns to the old sky gate. Mind the gaps — the clouds are a long way down.</p><div class="controls"><div class="control"><b>WASD</b> / <b>← ↑ ↓ →</b> move</div><div class="control"><b>SPACE</b> jump · double jump</div><div class="control"><b>R</b> restart</div></div><button class="btn" id="start">Begin the climb <span>→</span></button><span class="helper">Best with sound on · headphones optional</span><div class="tiny">A cozy, non-combat adventure. Made for wandering.</div></section></div>
+<div class="overlay hidden" id="finish"><section class="card"><div class="eyebrow">You found your way home</div><h1>Sky<br><em>bright!</em></h1><p id="finish-copy">Every gem gathered, every gap crossed. The Windward Isles are shining again.</p><button class="btn" id="again">Play again ↻</button></section></div>
+<div id="touch"><div class="touchgroup"><button class="touchbtn" data-key="left">←</button><button class="touchbtn" data-key="forward">↑</button><button class="touchbtn" data-key="right">→</button></div><div class="touchgroup"><button class="touchbtn" data-key="back">↓</button><button class="touchbtn jump" data-key="jump">JUMP</button></div></div>
+<script type="importmap">{"imports":{"three":"https://unpkg.com/three@0.161.0/build/three.module.js"}}</script>
+<script type="module">
+import * as THREE from 'three';
+
+const mount=document.querySelector('#game');
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x9bd5e9);scene.fog=new THREE.Fog(0x9bd5e9,32,105);
+const camera=new THREE.PerspectiveCamera(54,innerWidth/innerHeight,.1,180);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,1.8));renderer.setSize(innerWidth,innerHeight);renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;mount.appendChild(renderer.domElement);
+scene.add(new THREE.HemisphereLight(0xdff7ff,0x597a70,2.1));const sun=new THREE.DirectionalLight(0xffedcd,3.2);sun.position.set(-14,25,11);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-38;sun.shadow.camera.right=38;sun.shadow.camera.top=42;sun.shadow.camera.bottom=-50;sun.shadow.bias=-.0002;scene.add(sun);
+const mat=(color,rough=.8,metal=0)=>new THREE.MeshStandardMaterial({color,roughness:rough,metalness:metal});
+const mats={grass:mat(0x78b893),grassLight:mat(0x9bcea0),soil:mat(0x786a68),rock:mat(0x8e8991),flower:mat(0xffd77b),mint:mat(0x78e0c3,.3,.2),gem:mat(0x7ef1d4,.18,.35),fox:mat(0xcf7049),cream:mat(0xffe6c6),inner:mat(0x964d57),top:mat(0x327b83),shorts:mat(0x554879),gold:mat(0xf4c66f,.35,.28),eye:mat(0x22263b,.2),white:mat(0xfffaf0),cloud:mat(0xeaf7f0),wood:mat(0x76504b),leaf:mat(0x3e9b86)};
+function mesh(geo,material,parent=scene){const m=new THREE.Mesh(geo,material);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m}
+function box(parent,pos,scale,material,bevel=.12){const m=mesh(new THREE.BoxGeometry(...scale),material,parent);m.position.set(...pos);return m}
+function sphere(parent,pos,scale,material,seg=18){const m=mesh(new THREE.SphereGeometry(1,seg,Math.max(10,Math.floor(seg*.7))),material,parent);m.position.set(...pos);m.scale.set(...scale);return m}
+// Soft sky islands. Each landing has a broad, forgiving top and faceted underside.
+const platforms=[];
+function island(x,z,w,d,y=0,style=0){const group=new THREE.Group();group.position.set(x,y,z);scene.add(group);const top=mesh(new THREE.BoxGeometry(w,.62,d),style?mats.grassLight:mats.grass,group);top.position.y=-.31;top.receiveShadow=true;
+ const under=mesh(new THREE.CylinderGeometry(Math.min(w,d)*.38,Math.min(w,d)*.27,1.3,7,1),mats.soil,group);under.position.y=-1.05;under.rotation.y=.2;
+ const rim=mesh(new THREE.BoxGeometry(w+.12,.14,d+.12),mats.grassLight,group);rim.position.y=-.04;
+ platforms.push({x,z,y,w,d,top:group});
+ // small wildflowers and stones, decorative only
+ for(let i=0;i<Math.floor(w*d*.08);i++){let px=(Math.random()-.5)*(w-.7),pz=(Math.random()-.5)*(d-.7);if(Math.random()<.58){const stem=mesh(new THREE.CylinderGeometry(.025,.035,.23,5),mats.leaf,group);stem.position.set(px,.11,pz);const f=sphere(group,[px,.24,pz],[.1,.07,.1],Math.random()<.5?mats.flower:mats.white,9)}else{const r=sphere(group,[px,.09,pz],[.12,.1,.09],mats.rock,8)}}
+ return group}
+// The stepping-stone route bends gently; its pads are intentionally generous.
+island(0,0,9,10,0);island(1.7,-10,6.8,6.4,.15);island(-2.2,-19,6.6,6,.05);island(-4.4,-28,6.7,6.4,.35);island(-1.3,-37.4,6.6,6.4,.1);island(2.5,-46.5,6.8,6.5,.35);island(4.2,-56,7.2,7,.1);island(0,-65.5,10,9,.2);
+// Smaller scenery islands make the floating valley feel deep.
+for(const [x,z,s] of [[-12,-6,2.3],[11,-16,2.4],[10,-36,3],[-13,-46,2.6],[-10,-61,2.4],[12,-70,3]]){let g=new THREE.Group();g.position.set(x,-1.7,z);scene.add(g);let a=mesh(new THREE.CylinderGeometry(s*.7,s*.36,1.6,7),mats.soil,g);a.position.y=-.3;let b=mesh(new THREE.CylinderGeometry(s*.76,s*.7,.18,7),mats.grassLight,g);b.position.y=.48}
+// Distant floating cloud puffs.
+for(let i=0;i<28;i++){const x=(Math.random()-.5)*68,z=-Math.random()*83-5,y=2+Math.random()*12;const g=new THREE.Group();g.position.set(x,y,z);scene.add(g);for(let n=0;n<4;n++)sphere(g,[(n-1.5)*.8,Math.random()*.38,Math.random()*.35],[1.35+Math.random()*.25,.62+Math.random()*.3,.8],mats.cloud,12)}
+// A stylized grove of wind-bent trees on a few pads.
+function tree(x,y,z,size=1){const g=new THREE.Group();g.position.set(x,y,z);scene.add(g);let trunk=mesh(new THREE.CylinderGeometry(.12*size,.2*size,1.7*size,7),mats.wood,g);trunk.position.y=.72*size;trunk.rotation.z=-.1;for(let i=0;i<3;i++){let b=sphere(g,[(i-1)*.35*size,1.65*size+(i%2)*.27*size,0],[.64*size,.72*size,.6*size],i===1?mats.leaf:mat(0x62b694),12);b.rotation.z=-.2}}
+tree(-3.2,0,-2.5,.9);tree(4,0,2.4,.75);tree(3.6,.15,-11.6,.85);tree(-4.3,.05,-20.4,.8);tree(-2.7,.35,-29.6,.86);tree(3.6,.1,-38.7,.75);tree(6.7,.1,-57.7,.9);
+// Low hovering lanterns mark the safe route.
+const lanterns=[];function lantern(x,y,z){const g=new THREE.Group();g.position.set(x,y,z);scene.add(g);const body=mesh(new THREE.OctahedronGeometry(.28,0),mats.gold,g);body.scale.set(.75,1.2,.75);const light=new THREE.PointLight(0xffdc8c,1.1,5);light.position.y=0;g.add(light);lanterns.push({g,base:y,phase:Math.random()*6})}
+lantern(3,2.6,-5);lantern(3.1,2.7,-14);lantern(-4.3,2.6,-24);lantern(-2,2.8,-33);lantern(3.9,2.9,-42);lantern(5.5,2.6,-52);lantern(2,2.8,-62);
+// Twinkling collectibles.
+const gems=[];function gemAt(x,y,z){const g=new THREE.Group();g.position.set(x,y,z);scene.add(g);const core=mesh(new THREE.OctahedronGeometry(.36,0),mats.gem,g);core.rotation.z=.2;const halo=mesh(new THREE.TorusGeometry(.49,.025,6,28),new THREE.MeshBasicMaterial({color:0xb6ffe8,transparent:true,opacity:.72}),g);halo.rotation.x=Math.PI/2;gems.push({g,core,active:true,phase:Math.random()*8})}
+[[0,1.45,-4],[2.5,1.8,-9.6],[3.1,1.8,-12],[-.3,1.65,-18.5],[-3.8,1.85,-19.2],[-4.7,2.05,-27.5],[-1.3,1.75,-36.8],[-1.2,1.8,-38.5],[1.4,2.05,-45.5],[5.3,1.75,-47.5],[5.4,1.8,-55.5],[1.4,2,-64]].forEach(v=>gemAt(...v));
+// Destination arch / portal.
+const gate=new THREE.Group();gate.position.set(0,.3,-68.8);scene.add(gate);const arch=mesh(new THREE.TorusGeometry(2.35,.2,14,48,Math.PI),mats.gold,gate);arch.position.y=2.65;arch.rotation.z=Math.PI;const postL=mesh(new THREE.CylinderGeometry(.19,.28,2.7,8),mats.gold,gate);postL.position.set(-2.35,1.35,0);const postR=postL.clone();postR.position.x=2.35;gate.add(postR);const portal=mesh(new THREE.CircleGeometry(2.12,40),new THREE.MeshBasicMaterial({color:0x9df6dc,transparent:true,opacity:.38,side:THREE.DoubleSide}),gate);portal.position.set(0,2.65,-.08);const gateLight=new THREE.PointLight(0x8dffe1,3,12);gateLight.position.set(0,2.6,1);gate.add(gateLight);for(let i=0;i<7;i++){const star=mesh(new THREE.TetrahedronGeometry(.09),mats.gold,gate);star.position.set(Math.sin(i*2.7)*2.65,1.5+(i%3)*.8,.2)}
+// Foxglove, an adult fox wanderer, built from soft low-poly shapes.
+const hero=new THREE.Group();scene.add(hero);const avatar=new THREE.Group();hero.add(avatar);
+const body=new THREE.Group();avatar.add(body);
+// legs: long, strong fox legs with furry thighs and little paw-feet
+function limb(parent,from,to,r1,r2,material){const delta=new THREE.Vector3().subVectors(new THREE.Vector3(...to),new THREE.Vector3(...from));const m=mesh(new THREE.CylinderGeometry(r2,r1,delta.length(),12),material,parent);m.position.copy(new THREE.Vector3(...from).add(new THREE.Vector3(...to)).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());return m}
+const legParts=[];for(const s of [-1,1]){const thigh=sphere(body,[s*.34,.76,0],[.36,.63,.36],mats.fox);const knee=sphere(body,[s*.34,.36,.015],[.22,.28,.24],mats.fox);const shin=limb(body,[s*.34,.35,.02],[s*.35,.08,.08],.18,.13,mats.fox);const foot=sphere(body,[s*.35,.08,.18],[.25,.13,.36],mats.cream);for(let j=0;j<3;j++)sphere(body,[s*.35+(j-1)*.105,.08,.43],[.075,.07,.11],mats.cream,10);legParts.push({thigh,knee,shin,foot,s})}
+// waist/hips, cropped adventure jacket and exposed midriff
+sphere(body,[0,1.22,0],[.57,.29,.4],mats.fox);const torso=sphere(body,[0,1.76,0],[.57,.68,.39],mats.fox);torso.scale.x=.54;
+sphere(body,[0,1.67,.337],[.27,.2,.075],mats.cream); // soft cream-fur tummy patch
+const shorts=sphere(body,[0,1.25,0],[.59,.26,.42],mats.shorts);box(body,[0,1.45,.382],[.72,.09,.08],mats.gold,.03);
+const top=sphere(body,[0,2.0,.015],[.6,.32,.42],mats.top);top.scale.x=.93;
+// jacket collar + front seam and simple fitted sleeves
+sphere(body,[0,2.18,.11],[.3,.12,.43],mats.gold);
+for(const s of [-1,1]){const sleeve=limb(body,[s*.42,2.08,0],[s*.66,1.78,.02],.18,.14,mats.top);sphere(body,[s*.66,1.77,.04],[.17,.17,.17],mats.cream);sphere(body,[s*.78,1.65,.13],[.16,.19,.15],mats.fox)}
+// head, pointed ears, fringe, muzzle and expressive eyes
+const head=new THREE.Group();head.position.set(0,2.65,0);body.add(head);sphere(head,[0,0,0],[.52,.51,.44],mats.fox,22);
+for(const s of [-1,1]){const ear=sphere(head,[s*.33,.51,-.005],[.22,.51,.19],mats.fox,14);ear.rotation.z=-s*.19;const inner=sphere(head,[s*.34,.54,.145],[.115,.32,.045],mats.inner,12);inner.rotation.z=-s*.19;}
+sphere(head,[0,-.17,.37],[.34,.22,.25],mats.cream);sphere(head,[0,-.22,.53],[.18,.12,.13],mats.cream);sphere(head,[0,-.16,.645],[.085,.065,.055],mats.eye,12);
+for(const s of [-1,1]){sphere(head,[s*.205,.07,.38],[.102,.125,.055],mats.white,14);sphere(head,[s*.205,.065,.429],[.055,.084,.025],mats.eye,12);sphere(head,[s*.185,.1,.452],[.022,.026,.012],mats.white,8);}
+// little swept fringe tufts
+for(let i=-1;i<=1;i++){const tuft=mesh(new THREE.ConeGeometry(.15,.43,7),mats.fox,head);tuft.position.set(i*.19,.39,.27);tuft.rotation.z=-.35-i*.2;tuft.rotation.x=-.25}
+// Big fluffy tail follows behind, with a pale tip.
+const tail=new THREE.Group();tail.position.set(0,1.08,-.28);body.add(tail);tail.rotation.x=-.24;const tailShape=sphere(tail,[0,.15,-.83],[.4,.43,.98],mats.fox,18);tailShape.rotation.x=-.46;const tip=sphere(tail,[0,-.04,-1.56],[.34,.34,.38],mats.cream,16);tip.rotation.x=-.3;
+// scarf flutter
+const scarf=mesh(new THREE.BoxGeometry(.78,.12,.18),mats.gold,body);scarf.position.set(0,2.37,-.08);scarf.rotation.z=-.05;const scarfTail=mesh(new THREE.BoxGeometry(.16,.68,.08),mats.gold,body);scarfTail.position.set(-.42,2.36,-.28);scarfTail.rotation.z=.48;scarfTail.rotation.x=-.5;
+// Small cloud shadows under islands and distant horizon haze.
+const ocean=mesh(new THREE.PlaneGeometry(200,200),mat(0x76b8ce),scene);ocean.rotation.x=-Math.PI/2;ocean.position.set(0,-14,-32);ocean.receiveShadow=true;
+// Gameplay state.
+const key={};let started=false,paused=false,score=0,lives=3,velY=0,velX=0,velZ=0,onGround=false,jumps=0,lastSafe=new THREE.Vector3(0,0,0),elapsed=0,toastTimer=0,animTime=0;
+const ui={gems:document.querySelector('#gem-count'),lives:document.querySelector('#life-count'),progress:document.querySelector('#progress'),intro:document.querySelector('#intro'),finish:document.querySelector('#finish'),toast:document.querySelector('#toast')};
+function showToast(t){ui.toast.textContent=t;ui.toast.classList.add('show');toastTimer=1.8}
+function reset(){hero.position.set(0,0,0);velY=velX=velZ=0;score=0;lives=3;lastSafe.set(0,0,0);jumps=0;gems.forEach(o=>{o.active=true;o.g.visible=true});ui.gems.textContent='0 / 12';ui.lives.textContent='♥ ♥ ♥';ui.progress.style.width='0%';started=true;paused=false;ui.intro.classList.add('hidden');ui.finish.classList.add('hidden');}
+function jump(){if(!started||paused)return;if(onGround||jumps<2){velY=jumps===0?8.3:7.25;jumps++;onGround=false;showToast(jumps===2?'Foxglove fluttered!':'Up you go! ✨')}}
+document.querySelector('#start').onclick=reset;document.querySelector('#again').onclick=reset;addEventListener('keydown',e=>{const k=e.key.toLowerCase();key[k]=true;if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();if(k===' '&&!e.repeat)jump();if(k==='r'&&started)reset();if(k==='escape'&&started){paused=!paused;showToast(paused?'Taking a breather':'Back to the breeze!')}});addEventListener('keyup',e=>key[e.key.toLowerCase()]=false);
+const keyMap={left:'arrowleft',right:'arrowright',forward:'arrowup',back:'arrowdown'};document.querySelectorAll('.touchbtn').forEach(b=>{let k=b.dataset.key;const down=e=>{e.preventDefault();if(k==='jump')jump();else key[keyMap[k]]=true};const up=e=>{e.preventDefault();if(k!=='jump')key[keyMap[k]]=false};b.addEventListener('pointerdown',down);b.addEventListener('pointerup',up);b.addEventListener('pointercancel',up);b.addEventListener('pointerleave',up)});
+function finish(){started=false;ui.finish.classList.remove('hidden');document.querySelector('#finish-copy').textContent=`You gathered ${score} of 12 sun-gems and crossed every gap. The Windward Isles are shining again.`}
+function update(dt){elapsed+=dt;if(!started)return;
+ if(toastTimer>0){toastTimer-=dt;if(toastTimer<=0)ui.toast.classList.remove('show')}
+ if(paused)return;
+ const forward=(key.w||key.arrowup?1:0)-(key.s||key.arrowdown?1:0),side=(key.d||key.arrowright?1:0)-(key.a||key.arrowleft?1:0);const targetX=side*5.2,targetZ=-forward*5.6;velX+=(targetX-velX)*Math.min(1,dt*9);velZ+=(targetZ-velZ)*Math.min(1,dt*9);hero.position.x+=velX*dt;hero.position.z+=velZ*dt;
+ const prevY=hero.position.y;velY-=19.5*dt;hero.position.y+=velY*dt;onGround=false;
+ for(const p of platforms){if(hero.position.x>p.x-p.w/2+.1&&hero.position.x<p.x+p.w/2-.1&&hero.position.z>p.z-p.d/2+.1&&hero.position.z<p.z+p.d/2-.1){if(velY<=0&&prevY>=p.y-.02&&hero.position.y<=p.y){hero.position.y=p.y;velY=0;onGround=true;jumps=0;if(p.z<lastSafe.z-6)lastSafe.set(p.x,p.y,p.z)}}}
+ if(hero.position.y < -7){lives--;ui.lives.textContent='♥ '.repeat(Math.max(0,lives))||'♡';showToast('The clouds caught you — try that leap again');hero.position.set(lastSafe.x,lastSafe.y+.1,lastSafe.z);velY=0;velX=velZ=0;jumps=0;if(lives<=0){lives=3;ui.lives.textContent='♥ ♥ ♥';showToast('Fresh start, same brave heart')}}
+ // Gentle boundaries keep the route readable without walls.
+ hero.position.x=THREE.MathUtils.clamp(hero.position.x,-11,11);
+ const moving=Math.hypot(velX,velZ);if(moving>.25){avatar.rotation.y=Math.atan2(velX,-velZ);}
+ animTime+=dt*(onGround?Math.min(13,moving*2.2):4);body.position.y=onGround?Math.abs(Math.sin(animTime))*Math.min(.075,moving*.012):0;legParts.forEach((p,i)=>{const swing=onGround?Math.sin(animTime+(i*Math.PI))*.11:0;p.thigh.rotation.x=swing;p.shin.rotation.x=-swing*.45});tail.rotation.x=-.24+Math.sin(elapsed*3)*.12+(onGround?Math.sin(animTime)*.08:0);tail.rotation.z=Math.sin(elapsed*2.3)*.14;head.rotation.z=Math.sin(elapsed*1.6)*.025;
+ for(const g of gems){if(!g.active)continue;g.g.rotation.y+=dt*1.6;g.g.position.y+=Math.sin(elapsed*2.2+g.phase)*.002;if(hero.position.clone().add(new THREE.Vector3(0,1.35,0)).distanceTo(g.g.position)<1.05){g.active=false;g.g.visible=false;score++;ui.gems.textContent=`${score} / 12`;showToast('Sun-gem found! ✦')}}
+ lanterns.forEach(l=>{l.g.position.y=l.base+Math.sin(elapsed*1.6+l.phase)*.13;l.g.rotation.y=elapsed*.35});
+ const progress=THREE.MathUtils.clamp(-hero.position.z/68,0,1);ui.progress.style.width=`${Math.round(progress*100)}%`;
+ if(hero.position.distanceTo(new THREE.Vector3(0,.3,-68.7))<2.8)finish();
+}
+const look=new THREE.Vector3();function frame(){requestAnimationFrame(frame);const dt=Math.min(.035,clock.getDelta());update(dt);const target=new THREE.Vector3(hero.position.x*.5,hero.position.y+2.2,hero.position.z-5);camera.position.lerp(new THREE.Vector3(hero.position.x*.38,hero.position.y+7.5,hero.position.z+13.5),1-Math.exp(-dt*2.2));look.lerp(target,1-Math.exp(-dt*3));camera.lookAt(look);renderer.render(scene,camera)}const clock=new THREE.Clock();frame();
+addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);renderer.setPixelRatio(Math.min(devicePixelRatio,1.8))});
+</script></body></html>
